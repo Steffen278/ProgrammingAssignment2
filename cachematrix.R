@@ -4,7 +4,8 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
+## makeCacheMatrix 
+## 
 
 makeCacheMatrix <- function(x = matrix()) {
     ## the inverse of x has not been calculated
@@ -24,5 +25,12 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Assumption as per assignment: The matrix provided is always invertible, so the function will not check for this
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        inverseX <- x$getInverse()
+        if(!is.null(inverseX)) {
+            message("Retrieving stored data")
+            return(inverseX)
+        }
+        m <- x$get()
+        x$setInverse(solve(m))
+        x$getInverse()
 }
